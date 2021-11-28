@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Serch results</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	
+
+    <div class="single-services">
+      <div class="container">
+        <div class="row">
+        	{% if object_list %}  
+          <div class="col-md-8">
+            <section class='tabs-content'>
+         
+              {% for p in object_list %}
+              <article id='tabs-1'>
+                <a href="{{p.get_absolute_url}}"><img src="{{p.image.url}}" alt=""></a>
+                <h4><a href="{{p.get_absolute_url}}">{{p.title}}</a></h4>
+                <div style="margin-bottom:10px;">
+                  <span>{{p.author}} &nbsp;|&nbsp; {{p.published}} &nbsp;|&nbsp; 15 comments</span>
+                </div>
+                <p>
+                  {% autoescape off %}
+                    {{p.body|truncatewords:10 }}
+                  {% endautoescape %}
+                </p>
+                <br>
+                <div>
+                  <a href="{{p.get_absolute_url}}" class="filled-button">Continue Reading</a>
+                </div>
+              </article>
+              <br>
+              <br>
+              <br>
+              {% endfor %}
+
+            </section>
+          </div>
+          {% else %}
+                  <div class="row">
+          <div class="col-md-8">
+          	<br>
+          	<br>
+
+          <div class="alert alert-danger" role="alert">
+  <strong>Sorry!</strong> Serch results not found.
+</div>
+</div>
+{% endif %}
+          <div class="col-md-4">
+              <h4 class="h4">Search</h4>
+              
+              <form id="search_form" name="gs" method="GET" action="{% url 'car:serch_posts' %}">
+                <input type="text" name="q" class="form-control form-control-lg" placeholder="type to search..." autocomplete="on">
+              </form>
+
+              <br>
+              <br>
+
+              <h4 class="h4">Recent posts</h4>
+
+              <ul>
+                {% for post in last_posts %}
+                   <li>
+                      <h5 style="margin-bottom:10px;"><a href="{{posts.get_absolute_url}}">{{post.title}}</a></h5>
+                      <small><i class="fa fa-user"></i> {{post.author}} &nbsp;|&nbsp; <i class="fa fa-calendar"></i>{{post.published}}</small>
+                  </li>
+                {% endfor %}
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>  
+    <br>  
+    <br>  
+    <br>  
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Biz bilan bog'lanish</h1>
+            <span>Sovolingiz bo'lsa marhamat.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-information">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="contact-item">
+              <i class="fa fa-phone"></i>
+              <h4>Telefon</h4>
+              <p>Bizning telefon raqamimiz.</p>
+              <a href="#">+1 333 4040 5566</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="contact-item">
+              <i class="fa fa-envelope"></i>
+              <h4>Elektron pochta</h4>
+              <p>Bizning elektron pochtamiz</p>
+              <a href="#">contact@company.com</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="contact-item">
+              <i class="fa fa-map-marker"></i>
+              <h4>Manzil</h4>
+              <p>Bizning manzilimiz<br> Uzbekiston</p>
+              <a href="#">Google Mapdan ko'rish</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callback-form contact-us">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Bizga<em> habar</em> yuborish</h2>
+              <span>Habaringiz albatta ko'rib chiqiladi!</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="contact-form">
+              <form method="POST">
+                {% csrf_token %}
+               <div class="row">
+                  <div class="col-lg-4 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="name" type="text" class="form-control" id="name" placeholder="Ism" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-4 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*" placeholder="E-Mail Address" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-4 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="title" type="text" class="form-control" id="subject" placeholder="Mavzu" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" rows="6" class="form-control" id="message" placeholder="Sizning habaringiz" required=""></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="filled-button">Habarni jo'natish</button>
+                    </fieldset>
+                  </div>
+                </div>                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map">
+<!-- How to change your own map point
+	1. Go to Google Maps
+	2. Click on your location point
+	3. Click "Share" and choose "Embed map" tab
+	4. Copy only URL and paste it within the src="" field below
+-->
+      <iframe src="https://maps.google.com/maps?q=Av.+Lúcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+{% endblock %}

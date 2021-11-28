@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Bizning Blogimizni o'qing</h1>
+            <span>Ular qiziqarli va foydali</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="single-services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <section class='tabs-content'>
+              
+              <article id='tabs-1'>
+                <img src="{{post.image.url}}" alt="">
+                <h4>{{post.title}}</h4>
+                <hr>
+                <div style="margin-bottom:10px;">
+                  <span>{{post.author}} &nbsp;|&nbsp; {{post.published}} &nbsp;</span>
+                </div>
+                <hr>
+                <br>
+                <p>
+                  {% autoescape off %}
+                    {{post.body }}
+                  {% endautoescape %}
+                </p>
+                <br>
+                
+              </article>
+
+            </section>
+          </div>
+
+          <div class="col-md-4">
+              <h4 class="h4">Qidiruv</h4>
+              
+              <form id="search_form" name="gs" method="GET" action="{% url 'car:serch_posts' %}">
+                <input type="text" name="q" class="form-control form-control-lg" placeholder="type to search..." autocomplete="on">
+              </form>
+
+              <br>
+              <br>
+
+              <h4 class="h4">Ohirgi maqolalar</h4>
+
+              <ul>
+                {% for post in last_posts %}
+                   <li>
+                      <h5 style="margin-bottom:10px;"><a href="{{posts.get_absolute_url}}">{{post.title}}</a></h5>
+                      <small><i class="fa fa-user"></i> {{post.author}} &nbsp;|&nbsp; <i class="fa fa-calendar"></i>{{post.published}}</small>
+                  </li>
+                {% endfor %}
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callback-form contact-us">
+      <div class="container">
+        <div class="row">
+          <style type="text/css">
+            
+            .comments-top-top{
+              margin: 1.5em 0;
+              background: #eee;
+              width: 100%;
+              padding: 1em;
+            }
+            .top-comment-left{
+              float: left;
+              width: 17%;
+            }
+            .top-comment-right{
+  float: left;
+  width:84%;
+  margin-left:1em;
+}
+.top-comment-right ul{
+  padding: 0;
+  margin: 0;
+}
+.top-comment-right ul li{
+  display: inline-block;
+  color:#C3C3C3;
+    padding: 0.3em;
+}
+.top-comment-right ul li a{
+  text-decoration: none;
+  font-size: 1.1em;
+  color: #30BC93;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+}
+.top-comment-right ul li a:hover{
+  color: #000;
+}
+.top-comment-right p{
+  color: #000;
+  font-size:1em;
+  margin: 0;
+}
+.top-comment-right ul li span.left-at{
+  font-size: 1.2em;
+}
+.top-comment-right ul li span.right-at{
+  font-size:0.85em;
+}
+.top-comment-right {
+  width: 81%;
+}
+.top-comment-right {
+  width: 76%;
+}
+.top-comment-right p {
+  height: 43px;
+  overflow: hidden;
+}
+.top-comment-right ul li span.left-at {
+  font-size: 0.9em;
+}
+.top-comment-right ul li span.right-at {
+  font-size: 0.8em;
+}
+.top-comment-right ul li a {
+  font-size: 1em;
+}
+.top-comment-right ul li {
+  padding:0;
+}
+          </style>
+          {% for comment in post.post_comments.all %}       
+          <div class="col-md-12">
+            <div class="comments-top-top">
+            <div class="top-comment-left">
+              <img class="img-responsive" src="{% static 'assets/images/co.png' %}" alt="">
+            </div>
+            <div class="top-comment-right">
+              <ul>
+                <li><span class="left-at"><a href="#">{{comment.name}}</a></span></li>
+                <li><span class="right-at">{{comment.date}}</span></li>
+                <li><a class="reply" href="#contactF" onclick="AddComment('{{comment.name}}', '{{comment.id}}')">Javob</a></li>
+              </ul>
+            <p>{{comment.message}}</p>
+            </div>
+            <div class="clearfix"> </div>
+            </div>
+          </div>
+        {% endfor %}
+          <div class="col-md-12">
+            <div class="section-heading" id="contactF">
+              <h2><em>Commentariya </em>qoldiring</h2>
+              <span>Bizning maqolamiz uchun</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="contact-form">
+                            <script>
+     function AddComment(name, id) {
+      document.querySelector('#contactparent').value = id;
+      document.querySelector('#contactname').innerHTML = `${name},`;
+      console.log(id);
+      console.log(name);
+    }
+</script>
+              <form id="contact" action="{% url 'car:addcomment_view' post.id %}" method="POST">
+                {% csrf_token %}
+                  <input type="hidden" name="parent" id="contactparent" value="">
+                <div class="row">
+                  <div class="col-lg-6 col-md-12 col-sm-12">
+                      <input name="name" type="text" class="form-control"  placeholder="Ism" required="">
+                  </div>
+                  <div class="col-lg-6 col-md-12 col-sm-12">
+                      <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*" placeholder="Elektron pochta" required="">
+                  </div>
+                  <div class="col-lg-12">
+                      <textarea name="message" rows="6" class="form-control" id="contactname" placeholder="Sizning xabaringiz" required=""></textarea>
+                  </div>
+                  <div class="col-lg-12">
+                    <style type="text/css">
+                    </style>
+                      <button id="form-submit" class="filled-button">Jo'natish</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}
+ 

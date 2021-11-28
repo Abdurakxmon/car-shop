@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Bizning blogimizni o'qing</h1>
+            <span>Ular qiziqarli va foydali</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="single-services">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-8">
+            {% for post in posts %}
+            <section class='tabs-content'>
+              
+              
+              <article id='tabs-1'>
+                <a href="{{post.get_absolute_url}}"><img src="{{post.image.url}}" alt=""></a>
+                <h4><a href="{{post.get_absolute_url}}">{{post.title}}</a></h4>
+                <div style="margin-bottom:10px;">
+                  <span>{{post.author}} &nbsp;|&nbsp; {{post.published}} &nbsp;</span>
+                </div>
+                <p>
+                  {% autoescape off %}
+                    {{post.body|truncatewords:10 }}
+                  {% endautoescape %}
+                </p>
+                <br>
+                <div>
+                  <a href="{{post.get_absolute_url}}" class="filled-button">O'qishni davom etish</a>
+                </div>
+              </article>
+              <br>
+              <br>
+              <br>
+              
+
+            </section>
+            {% endfor %}
+          </div>
+          
+
+          <div class="col-md-4">
+              <h4 class="h4">Qidiruv</h4>
+              
+              <form id="search_form" name="gs" method="GET" action="{% url 'car:serch_posts' %}">
+                <input type="text" name="q" class="form-control form-control-lg" placeholder="type to search..." autocomplete="on">
+              </form>
+
+              <br>
+              <br>
+
+              <h4 class="h4">Ohirgi maqolalar</h4>
+
+              <ul>
+                {% for post in last_posts %}
+                   <li>
+                      <h5 style="margin-bottom:10px;"><a href="{{posts.get_absolute_url}}">{{post.title}}</a></h5>
+                      <small><i class="fa fa-user"></i> {{post.author}} &nbsp;|&nbsp; <i class="fa fa-calendar"></i>{{post.published}}</small>
+                  </li>
+                {% endfor %}
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>  
+    <br>  
+    <br>  
+    <br>  
+
+{% endblock %}

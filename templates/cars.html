@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Avtomobillar</h1>
+            <span>Arzon va sifatli.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="container">
+                <form method="GET" action=".">
+          <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                       <center><label>Yangi:</label></center>
+                      <br>
+                      <style type="text/css">
+                        .a{
+                          width: 40px;
+                        }
+                      </style>
+                      <center><input type="radio" id="new_old" name="new" class="form-control a" value="new"></center>
+                    </div>
+                     
+                      
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                       <center><label>Ishlatilgan:</label></center>
+                      <br>
+                      <style type="text/css">
+                        .a{
+                          width: 40px;
+                        }
+                      </style>
+                      <center><input type="radio" id="new_old" name="new" class="form-control a"v value="used"></center>
+                    </div>
+                  </div>
+              </div>
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Avtomobil turi:</label>
+           
+                       <select class="form-control" name="car_name">
+                            <option value="sellect">Sellect..</option>
+                            {% for name in name %}
+                              <option value="{{name.name}}">{{name.name}}</option>
+                            {% endfor %}
+                       </select>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Model:</label>
+           
+                       <select class="form-control" name="model">
+                            <option value="sellect">Sellect..</option>
+                          {% for model in model %}
+                            <option value="{{model.model}}">{{model.model}}</option>
+                          {% endfor %}
+                       </select>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Zavoddan chiqqan yili :</label>
+                       <select class="form-control" name="first_registration">
+                          <option value="sellect">Sellect..</option>
+                        {% for first_registration in first_registration %}
+                          <option value="{{first_registration.first_registration}}">{{first_registration.first_registration}}</option>
+                        {% endfor %}
+                       </select>
+                  </div>
+              </div>
+              
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Narx:</label>
+                       <select class="form-control" name="price">
+                          <option value="sellect">Sellect..</option>
+                          {% for price in price %}
+                            <option value="{{price.price}}">{{price.price}}</option>
+                          {% endfor %}
+                       </select>
+                  </div>
+              </div>
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Kilometr:</label>
+                       <select class="form-control" name="mileage">
+                          <option value="sellect">Sellect..</option>
+                        {% for mileage in mileage %}
+                            <option value="{{mileage.mileage}}">{{mileage.mileage}}</option>
+                        {% endfor %}
+                       </select>
+                  </div>
+              </div>
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Dvigatel hajmi:</label>
+                       <select class="form-control" name="engine_size">
+                          <option value="sellect">Sellect..</option>
+                        {% for engine_size in engine_size %}
+                          <option value="{{engine_size.engine_size}}">{{engine_size.engine_size}}</option>
+                        {% endfor %}
+                       </select>
+                  </div>
+              </div>
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Quvvat:</label>
+           
+                       <select class="form-control" name="power">
+                        <option value="sellect">Sellect..</option>
+                        {% for power in power %}
+                           <option value="{{power.power}}">{{power.power}}</option>
+                            {% endfor %}
+                       </select>
+                  </div>
+              </div>
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Yonilg'i:</label>
+           
+                       <select class="form-control" name="fuel">
+                        <option value="sellect">Sellect..</option>
+                        {% for fuel in fuel %}
+                          <option value="{{fuel.fuel}}">{{fuel.fuel}}</option>
+                            {% endfor %}
+                       </select>
+                  </div>
+              </div>
+      
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                      <label>Vites qutisi:</label>
+                       <select class="form-control" name="gearbox">
+                        <option value="sellect">Sellect..</option>
+                        {% for gearbox in gearbox %}
+                            <option value="{{gearbox.gearbox}}">{{gearbox.gearbox}}</option>
+                            {% endfor %}
+                       </select>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-sm-4 offset-sm-4">
+            <div class="main-button text-center">
+              <style type="text/css">
+                .b{
+                  width: 100px;
+                  border-radius: 50px; 
+                }
+              </style>
+                <a href="#carfilter"><input type="submit" name="" class="btn btn-primary b" value="Qidirish"></a>
+            </div>
+          </div>
+          <br>
+          <br>
+        </form>
+
+        <div class="row">
+          {% for car in qs %}
+          <div class="col-md-4">
+            <div class="service-item">
+              <img src="{{car.image.url}}" alt="">
+              <div class="down-content">
+                <h4>{{car.name}}</h4>
+                <div style="margin-bottom:10px;">
+                  <span>
+                      <del><sup>$</sup>{{car.old_price}} </del> &nbsp; <sup>$</sup>{{car.price}}
+                  </span>
+                </div>
+
+                <p>
+                  <i class="fa fa-dashboard"></i> {{car.mileage}}km &nbsp;&nbsp;&nbsp;
+                  <i class="fa fa-cube"></i> {{car.engine_size}} cc &nbsp;&nbsp;&nbsp;
+                  <i class="fa fa-cog"></i> {{car.gearbox}} &nbsp;&nbsp;&nbsp;
+                </p>
+                <a href="{{car.get_absolute_url}}" class="filled-button">Batafsil</a>
+              </div>
+            </div>
+            
+            <br>
+          </div>
+          {% endfor %}
+        </div>
+        <br><br>
+
+        <div class="row">
+          {% for car in cars %}
+          <div class="col-md-4">
+            <div class="service-item">
+              <img src="{{car.image.url}}" alt="">
+              <div class="down-content">
+                <h4>{{car.name}}</h4>
+                <div style="margin-bottom:10px;">
+                  <span>
+                      <del><sup>$</sup>{{car.old_price}} </del> &nbsp; <sup>$</sup>{{car.price}}
+                  </span>
+                </div>
+
+                <p>
+                  <i class="fa fa-dashboard"></i> {{car.mileage}}km &nbsp;&nbsp;&nbsp;
+                  <i class="fa fa-cube"></i> {{car.engine_size}} cc &nbsp;&nbsp;&nbsp;
+                  <i class="fa fa-cog"></i> {{car.gearbox}} &nbsp;&nbsp;&nbsp;
+                </p>
+                <a href="{{car.get_absolute_url}}" class="filled-button">Batafsil</a>
+              </div>
+            </div>
+            
+            <br>
+          </div>
+          {% endfor %}
+        </div>
+
+        <br>
+        <br>
+
+        <nav>
+          <ul class="pagination pagination-lg justify-content-center">
+            {% if qs.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{qs.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+                <span class="sr-only">Oldingisi</span>
+              </a>
+            </li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#">{{qs.number}}</a></li>
+            {% if qs.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{qs.next_page_number}}" aria-label="Next">
+                <span aria-hidden="true">»</span>
+                <span class="sr-only">Kegingisi</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+
+{% endblock %}

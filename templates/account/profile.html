@@ -1,0 +1,283 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Cars</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <style type="text/css">
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-xs-12">
+            <ul class="left-info">
+              <li><a href="#"><i class="fa fa-envelope"></i>contact@company.com</a></li>
+              <li><a href="#"><i class="fa fa-phone"></i>123-456-7890</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="right-icons">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'car:home' %}"><h2><em>Avto bozor</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item {% if nbar == 'home' %}active{% endif %}">
+                  <a class="nav-link" href="{% url 'car:home' %}">Bosh sahifa
+                  <span class="sr-only">(current)</span>
+                </a>
+                </li>
+
+              <li class="nav-item">
+                <a class="nav-link {% if nbar == 'car_detail' %}active{% endif %}" href="{% url 'car:all_cars' %}">Avtomobillar</a>
+              </li>
+              <li class="nav-item {% if nbar == 'blog' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'car:posts' %}">Blog</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="{% url 'car:about' %}">Biz haqimizda</a>
+              </li>       
+              <li class="nav-item {% if nbar == 'contact' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'car:contact' %}">Biz bilan bog'lanish</a>
+              </li>              
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'car:logout' %}">Chiqish</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Profile</h1>
+            <span>Siz o'z avtomobilingizni qoshishingiz mumkin.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="callback-form contact-us">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Saytga o'z <em>avtomobilingizni</em> joylang.</h2>
+              <span>Sizning avtomobilingiz ko`rib chiqiladi!</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="contact-form">
+              <form method="GET" action=".">
+               <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Yangimi:</label>
+                      <input type="checkbox" name="new" class="form-control">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <fieldset>
+                          <label>Turi:</label>
+                        <select class="form-control" name="type">
+                          <option value="sellect">Sellect..</option>
+                          <option value="Yengil">Yengil</option>
+                          <option value="Og'ir">Og'ir</option>
+                        </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <fieldset>
+                        <label>Nomi:</label>
+                        <input type="text" name="name" class="form-control" placeholder="Avtomobil nomi">
+                    </fieldset>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Zavoddan chiqqan kuni:</label>
+                      <input type="text" name="year" class="form-control">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Qancha yurgan:</label>
+                      <input type="text" name="mileage" class="form-control">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Yoqilg'i turi:</label>
+                      <select class="form-control" name="fuel">
+                          <option value="sellect">Sellect..</option>
+                           <option value="Benzin">Benzin</option>
+                           <option value="Gaz">Gaz</option>
+                        </select>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Divigitel hajmi:</label>
+                      <input type="text" name="engine_size" class="form-control">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Quvvati:</label>
+                      <input type="text" name="power" class="form-control">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Vites qutisi:</label>
+                      <input type="text" name="gearbox" class="form-control">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-6">
+                    <fieldset>
+                      <label>Rangi:</label>
+                      <input type="text" name="color" class="form-control">
+                    </fieldset>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <label>Avtomobil haqida</label>
+                      <textarea name="desc" rows="6" class="form-control" id="desc" placeholder="Avtomobil haqida" required=""></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="filled-button">Habarni jo'natish</button>
+                    </fieldset>
+                  </div>
+                </div>                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 footer-item">
+            <center>
+              <h4>Avto bozor</h4>
+            <p>Biz sizning hizmatingizdamiz.</p>
+            <ul class="social-icons">
+              <li><a rel="nofollow" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+            </center>
+          </div>
+          <div class="col-md-6 footer-item">
+            <center>
+              <h4>Sahifalar</h4>
+              <style type="text/css">
+                ul.menu-list li {
+                display:inline;
+                padding: 20px;
+                    }
+              </style>
+            <ul class="menu-list">
+              <li><a href="{% url 'car:about' %}">Biz haqimizda</a></li>
+              <li><a href="{% url 'car:all_cars' %}">Mashinalar</a></li>
+              <li><a href="{% url 'car:posts' %}">Yangiliklar</a></li><br><br>
+              <li><a href="{% url 'car:contact' %}">Biz bilan bog'lanish</a></li>
+              <li><a href="{% url 'car:profile' %}">Mashina qoshish</a></li>
+            </ul>
+            </center>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <div class="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+                Abdurahmon
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Additional Scripts -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/owl.js' %}"></script>
+    <script src="{% static 'assets/js/slick.js' %}"></script>
+    <script src="{% static 'assets/js/accordions.js' %}"></script>
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+</html>
+  
+{% endblock content %}

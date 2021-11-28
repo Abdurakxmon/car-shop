@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Banner Starts Here -->
+    <div class="main-banner header-text" id="top">
+        <div class="Modern-Slider">
+          <!-- Item -->
+          <div class="item item-1">
+            <div class="img-fill">
+                <div class="text-content">
+                  <h6>Car shop</h6>
+                  <h4>Abdurakhmon<br> Muhibbillayev</h4>
+                  <p>About your shop.</p>
+                  <a href="{% url 'car:all_cars' %}" class="filled-button">Cars</a>
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item item-2">
+            <div class="img-fill">
+                <div class="text-content">
+                  <h6>Car shop</h6>
+                  <h4>Abdurakhmon<br> Muhibbillayev</h4>
+                  <p>About your shop.</p>
+                  <a href="{% url 'car:about' %}" class="filled-button">About Us</a>
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item item-3">
+            <div class="img-fill">
+                <div class="text-content">
+                  <h6>Car shop</h6>
+                  <h4>Abdurakhmon<br> Muhibbillayev</h4>
+                  <p>About your shop.</p>
+                  <a href="contact.html" class="filled-button">Contact Us</a>
+                </div>
+            </div>
+          </div>
+          <!-- // Item -->
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div class="request-form">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h4>Hoziroq qayta qo'ng'iroq qilishni xohlaysizmi?</h4>
+            <span>Biz bilan bog'laning --></span>
+          </div>
+          <div class="col-md-4">
+            <a href="{% url 'car:contact' %}" class="border-button">Biz bilan bog'lanish</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Tavsiya etilgan <a href="{% url 'car:all_cars' %}"><em>Avtomobillar</em></a></h2>
+            </div>
+          </div>
+          {% for product in products %}
+            
+          
+          <div class="col-md-4">
+            <div class="service-item">
+              <img src="{{product.image.url}}" alt="">
+              <div class="down-content">
+                <h4>{{product.name}}</h4>
+                <div style="margin-bottom:10px;">
+                  <span>
+                      <del><sup>$</sup>{{product.old_price}}</del> &nbsp; <sup>$</sup>{{product.price}}
+                  </span>
+                </div>
+
+                <p>
+                  <i class="fa fa-dashboard"></i> {{product.mileage}}km &nbsp;&nbsp;&nbsp;
+                  <i class="fa fa-cube"></i> {{product.engine_size}} cc &nbsp;&nbsp;&nbsp;
+                  <i class="fa fa-cog"></i> {{product.gearbox}} &nbsp;&nbsp;&nbsp;
+                </p>
+                <a href="{{product.get_absolute_url}}" class="filled-button">Batafsil</a>
+              </div>
+            </div>
+            
+            <br>
+          </div>
+     
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="fun-facts">
+      <div class="container">
+        <div class="more-info-content">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="left-image">
+                <img src="static/assets/images/about-1-570x350.jpg" class="img-fluid" alt="">
+              </div>
+            </div>
+            <div class="col-md-6 align-self-center">
+              <div class="right-content">
+                <span>Biz kimmiz</span>
+                <h2> <em> bizning kompaniyamiz </em> </h2> haqida bilib oling
+                 <p> Bizning kompaniya 2021-yili ochilgan </p>
+                <a href="{% url 'car:about' %}" class="filled-button">Batafsil</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="more-info">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Bizning <a href="{% url 'car:posts' %}"><em>Bloglarimizni</em></a> o'qing</h2>
+        </div>
+
+<div class="row">
+{% for post in ls_posts %}
+            
+          
+          <div class="col-md-4">
+            <div class="service-item">
+              <img src="{{post.image.url}}" alt="">
+              <div class="down-content">
+                <h4>{{post.title}}</h4>
+                <div style="margin-bottom:10px;">
+                  <span>
+                      {{post.author}} &nbsp;|&nbsp; {{post.published}} &nbsp;
+                  </span>
+                </div>
+                <center><a href="{{post.get_absolute_url}}" class="filled-button">Batafsil</a></center>
+              </div>
+            </div>
+            
+            <br>
+          </div>
+     
+          {% endfor %}
+
+        
+      </div>
+    </div>
+
+    <div class="testimonials">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Ular <a href="{% url 'car:about' %}"><em>biz haqimizda</em></a> nima deyishadi</h2>
+              <span>bizning eng katta mijozlarimizning guvohnomalari</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="owl-testimonials owl-carousel">
+              
+              <div class="testimonial-item">
+                <div class="inner-content">
+                  <h4>George Walker</h4>
+                  <span>Bosh moliyaviy tahlilchi</span>
+                  <p>"Biron bir matin"</p>
+                </div>
+                <img src="http://placehold.it/60x60" alt="">
+              </div>
+              
+              <div class="testimonial-item">
+                <div class="inner-content">
+                  <h4>John Smith</h4>
+                  <span>Bozor mutaxassisi</span>
+                  <p>"Biron bir matin"</p>
+                </div>
+                <img src="http://placehold.it/60x60" alt="">
+              </div>
+              
+              <div class="testimonial-item">
+                <div class="inner-content">
+                  <h4>David Wood</h4>
+                  <span>Bosh buxgalter</span>
+                  <p>"Biron bir matin"</p>
+                </div>
+                <img src="http://placehold.it/60x60" alt="">
+              </div>
+              
+              <div class="testimonial-item">
+                <div class="inner-content">
+                  <h4>Andrew Boom</h4>
+                  <span>Marketing rahbari</span>
+                  <p>"Biron bir matin"</p>
+                </div>
+                <img src="http://placehold.it/60x60" alt="">
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

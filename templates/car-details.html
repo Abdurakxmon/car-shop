@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1><small><del><sup>$</sup>{{product.old_price}} </del></small> &nbsp; <sup>$</sup>{{product.price}}</h1>
+            <span>
+                Siz uchun maxsus narxda.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <div>
+              <img src="{{product.image.url}}" alt="" class="img-fluid wc-image">
+            </div>
+
+            <br> 
+            <div class="row">
+              {% for productimages in product.productimages_set.all %}
+              <div class="col-sm-4 col-6">
+                <div>
+                  <img src="{{productimages.image.url}}" alt="" class="img-fluid">
+                </div>
+                <br>
+              </div>
+              {% endfor %}
+            </div>
+
+            <br>
+          </div>
+
+          <div class="col-md-5">
+            <form action="#" method="post" class="form">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="clearfix">
+                      <center>
+                        <span class="pull-left">
+                          <strong class="pull-right">
+                            {% if product.selled == False %}
+                            Yangi {%else%}Ishlatilgan
+                            {% endif %}
+                          </strong>
+                        </span>
+                      </center>
+                    </div>
+               </li>
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Turi</span>
+
+                         <strong class="pull-right">{{product.category.name}}</strong>
+                    </div>
+               </li>
+
+               <!--
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Make</span>
+
+                         <strong class="pull-right">Lorem ipsum dolor sit</strong>
+                    </div>
+               </li>-->
+             
+
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left"> Nomi</span>
+
+                         <strong class="pull-right">{{product.name}}</strong>
+                    </div>
+               </li>
+               
+                <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Modeli</span>
+
+                         <strong class="pull-right">{{product.model}}</strong>
+                    </div>
+               </li>
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Birinchi ro'yxatdan o'tishi</span>
+
+                         <strong class="pull-right">{{product.first_registration}}</strong>
+                    </div>
+               </li>
+
+
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Kilometri</span>
+
+                         <strong class="pull-right">{{product.mileage}}</strong>
+                    </div>
+               </li>
+
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Yoqilg'isi</span>
+
+                         <strong class="pull-right">{{product.fuel}}</strong>
+                    </div>
+               </li>
+
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Dvigatel hajmi</span>
+
+                         <strong class="pull-right">{{product.engine_size}} cc</strong>
+                    </div>
+               </li>
+
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Quvvati</span>
+
+                         <strong class="pull-right">{{product.power}} hp</strong>
+                    </div>
+               </li>
+
+
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Vites qutisi</span>
+
+                         <strong class="pull-right">{{product.gearbox}}</strong>
+                    </div>
+               </li>
+
+               <!--
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Doors</span>
+
+                         <strong class="pull-right">2/3</strong>
+                    </div>
+               </li>
+                -->
+               <li class="list-group-item">
+                    <div class="clearfix">
+                         <span class="pull-left">Rangi</span>
+
+                         <strong class="pull-right">{{product.colors}}</strong>
+                    </div>
+               </li>
+              </ul>
+            </form>
+
+            <br>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="tabs-content">
+              <h4>Avtomobil tavsifi</h4>
+              {% autoescape off %}
+                {{product.vehicle_description}}
+              {% endautoescape %}
+              <br>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="tabs-content">
+              <h4>Avtomobil uchun qo'shimcha vositalar</h4>
+              {% autoescape off %}
+                {{product.vehicle_extras}}
+              {% endautoescape %}
+            </div>
+
+            <br>
+            <br>
+
+            <div class="tabs-content">
+              <h4>Aloqa tafsilotlari</h4>
+
+              <p>
+                <span>Ism</span>
+              
+                <br>
+              
+                <strong>{{product.contact_detail.name}}</strong>
+              </p>
+              
+              <p>
+                <span>Telefon</span>
+              
+                <br>
+                
+                <strong>
+                  <a href="tel:{{product.contact_detail.phone}}">{{product.contact_detail.phone}}</a>
+                </strong>
+              </p>            
+              <p>
+                <span>Email</span>
+              
+                <br>
+                
+                <strong>
+                  <a href="mailto:{{product.contact_detail.user.email}}">{{product.contact_detail.user.email}}</a>
+                </strong>
+              </p>
+            </div>
+
+            <br>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+
+    <!-- Footer Starts Here -->
+{% endblock %}
